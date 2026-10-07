@@ -33,6 +33,8 @@ The sample receiving note shortcut is available only for the unchanged original 
 
 See [DEPLOY.md](DEPLOY.md) for the Render Free Blueprint and Docker deployment instructions. Hosted mode allows visitors to try the fictional sample drill. Live AI requires a judge access code and has shared request limits. Keep the Nebius key and judge code in the host's secret settings. A hosted HTTPS URL must pass the deployment checks before being shared with judges.
 
+[Deploy your free demo on Render](https://render.com/deploy?repo=https://github.com/Pranay847/recallready)
+
 ## Connect live Nemotron extraction
 
 Copy `.env.example` to `.env`, fill in `NEBIUS_API_KEY`, and restart the server:

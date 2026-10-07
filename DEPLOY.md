@@ -7,8 +7,8 @@ the private Devpost testing instructions, not in the public repository.
 
 ## Render Free deployment
 
-1. Publish this folder as the root of a public GitHub repository.
-2. In Render, create a Blueprint from the repository's `render.yaml`.
+1. Open [Deploy RecallReady on Render](https://render.com/deploy?repo=https://github.com/Pranay847/recallready) and sign in to your Render account.
+2. Review the Blueprint from the repository's `render.yaml`.
 3. Confirm that the service plan is **Free**. Paste the Nebius API key in the
    `NEBIUS_API_KEY` secret field. Render generates `DEMO_ACCESS_CODE` for you.
 4. Deploy. Render supplies `RENDER_EXTERNAL_URL`; the app uses it to validate
