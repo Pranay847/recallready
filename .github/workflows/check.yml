@@ -1,0 +1,27 @@
+name: Check RecallReady
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: docker build --tag recallready:check .
+      - name: Check container startup and public sample
+        run: |
+          docker run --detach --name recallready-check --publish 4317:4317 --env PUBLIC_URL=https://demo.example.com recallready:check
+          curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:4317/api/health
+          curl --fail --header 'Host: demo.example.com' http://127.0.0.1:4317/ --output /dev/null
+          curl --fail --header 'Host: demo.example.com' http://127.0.0.1:4317/api/demo --output /dev/null
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' --request POST --header 'Host: demo.example.com' http://127.0.0.1:4317/api/extract)" = 401
+      - name: Container logs
+        if: failure()
+        run: docker logs recallready-check || true

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: recallready
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: RECALLREADY_HOSTED
+        value: "true"
+      - key: NEBIUS_MODEL
+        value: nvidia/nemotron-3-super-120b-a12b
+      - key: NEBIUS_API_KEY
+        sync: false
+      - key: DEMO_ACCESS_CODE
+        generateValue: true

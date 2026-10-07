@@ -1,0 +1,7 @@
+id,product,brand,sku,upc,lot,quantity,unit,location
+INV-101,Sesame Oat Bar 40 g,Cedar Valley Foods,CV-SES-40,00012345678905,CV-260801-01,24,cartons,Chicago / A-12
+INV-102,Sesame Oat Bar 40 g,Cedar Valley Foods,CV-SES-40,00012345678905,CV-260801-02,18,cartons,Chicago / A-14
+INV-103,Sesame Oat Bar 40 g,Cedar Valley Foods,CV-SES-40,00012345678905,,12,cartons,Madison / B-03
+INV-104,Sesame Oat Bar 40 g,Cedar Valley Foods,CV-SES-40,00012345678905,CV-260801-04,30,cartons,Chicago / A-16
+INV-105,Cocoa Oat Bar 40 g,Cedar Valley Foods,CV-COC-40,00012345678912,CV-260801-01,20,cartons,Madison / B-04
+INV-106,Sesame Oat Bar 40 g,Cedar Valley Foods,CV-SES-40,00012345678905,CV-260801-03,0,cartons,Chicago / Dispatch
