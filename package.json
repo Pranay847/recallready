@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Evidence-backed recall drills for small food distributors",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --configLoader native",
     "server": "node server/index.mjs",
@@ -14,9 +16,12 @@
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
-    "pdfjs-dist": "^5.4.149",
+    "pdfjs-dist": "^6.4.299",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
-  "devDependencies": { "@vitejs/plugin-react": "^5.0.0", "vite": "^7.1.0" }
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.1.0"
+  }
 }

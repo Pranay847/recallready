@@ -10,6 +10,8 @@ Coverage includes exact product/lot decisions, missing and conflicting identifie
 
 `npm run build`: **passed**. React/Vite production assets are generated in `dist/`.
 
+Dependency audit: **0 reported vulnerabilities** after updating PDF.js to 6.4.299 and source-map-js to its patched release. The PDF text-extraction and image-only rejection checks pass with the updated loading-task cleanup API.
+
 Hosted-mode checks cover required HTTPS configuration, secret-free health output, allowed host/origin checks, missing/incorrect judge codes blocking provider calls, input-size limits, concurrency slots, hourly extraction limits, and shared PDF/API request limits. These tests use controlled model responses, not live inference.
 
 On October 6, the production frontend was checked in a browser through a local proxy running hosted mode: sample totals loaded, an incorrect judge code was rejected, the valid test code unlocked extraction, the extracted candidate required operator review, and refreshing cleared the unlock. This used a fixture provider response and does not establish live inference or public TLS availability.

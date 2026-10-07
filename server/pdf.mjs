@@ -18,13 +18,11 @@ export async function extractPdfText({ filename, dataBase64 }) {
   if (typeof filename !== 'string' || !filename.toLocaleLowerCase('en-US').endsWith('.pdf')) throw documentError('Only PDF documents are supported');
   const data = decodeBase64(dataBase64);
   const { getDocument } = await import('pdfjs-dist/legacy/build/pdf.mjs');
-  let pdf;
+  const loadingTask = getDocument({ data, isEvalSupported: false, useSystemFonts: true });
   try {
-    pdf = await getDocument({ data, isEvalSupported: false, useSystemFonts: true }).promise;
-  } catch {
-    throw documentError('PDF could not be read');
-  }
-  try {
+    let pdf;
+    try { pdf = await loadingTask.promise; }
+    catch { throw documentError('PDF could not be read'); }
     if (pdf.numPages > 40) throw documentError('PDF exceeds the 40 page limit', 413);
     const pages = [];
     let totalCharacters = 0;
@@ -40,6 +38,6 @@ export async function extractPdfText({ filename, dataBase64 }) {
     if (!text) throw documentError('No readable text was found. This PDF may be image-only; use a text-based PDF or paste the notice text.');
     return { text, pages: pdf.numPages };
   } finally {
-    await pdf.destroy();
+    await loadingTask.destroy();
   }
 }
