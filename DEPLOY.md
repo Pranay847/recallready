@@ -1,5 +1,10 @@
 # Hosted hackathon demo
 
+Public sample demo: [recallready.onrender.com](https://recallready.onrender.com).
+The sample workflow is verified. The October 10 hosted AI call returned Nebius
+HTTP 402; restore account credit and rerun live extraction before treating the
+AI demonstration as ready. See [VALIDATION.md](VALIDATION.md).
+
 The public sample drill needs no account. Live Nemotron extraction requires a
 judge access code. Both the Nebius key and the access code are runtime secrets,
 never files in the repository or Docker image. Give judges the access code in

@@ -13,6 +13,18 @@ const response = (content, extra = {}) => async () => new Response(JSON.stringif
   choices: [{ finish_reason: extra.finishReason || 'stop', message: { content, refusal: extra.refusal } }],
 }));
 
+test('provider credit errors explain recovery without retries, candidates, or private provider details', async () => {
+  for (const extract of [extractNotice, extractInventory]) {
+    let calls = 0;
+    await assert.rejects(extract({ ...options, fetchImpl: async () => {
+      calls++;
+      return new Response('private-provider-detail', { status: 402 });
+    } }), error => error.status === 503 && /Token Factory balance/.test(error.message)
+      && /sample drill/.test(error.message) && !error.message.includes('private-provider-detail'));
+    assert.equal(calls, 1);
+  }
+});
+
 test('both extraction prompts include the same complete schema as response_format', async () => {
   for (const [extract, candidate] of [[extractNotice, notice], [extractInventory, { records: [] }]]) {
     await extract({ ...options, fetchImpl: async (_url, request) => {

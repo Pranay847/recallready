@@ -1,10 +1,10 @@
 # Validation record
 
-Validated locally on Windows with Node 24.11.1, September 6–8 and October 6, 2026.
+Validated locally on Windows with Node 24.11.1, September 6–8, October 6 and October 10, 2026.
 
 ## Automated checks
 
-`npm test`: **53 passing, 0 failing** (October 6).
+`npm test`: **54 passing, 0 failing** (October 10).
 
 Coverage includes exact product/lot decisions, missing and conflicting identifiers, initial and resolved drill totals, shipment links, malformed quantities and CSVs, source provenance, text-PDF extraction, image-only PDF rejection, local-host and origin checks, secret-free health responses, unconfigured inference, structured model-response handling, candidate invoice quantities, state restoration, stale analysis and export escaping.
 
@@ -16,7 +16,20 @@ Hosted-mode checks cover required HTTPS configuration, secret-free health output
 
 On October 6, the production frontend was checked in a browser through a local proxy running hosted mode: sample totals loaded, an incorrect judge code was rejected, the valid test code unlocked extraction, the extracted candidate required operator review, and refreshing cleared the unlock. This used a fixture provider response and does not establish live inference or public TLS availability.
 
-The Docker configuration and Render Blueprint are included. The Windows Docker daemon was unavailable during the local checks; the GitHub Actions workflow builds the image on Linux. Public HTTPS deployment verification remains a separate required check.
+The Linux container build and startup checks passed in [GitHub Actions](https://github.com/Pranay847/recallready/actions/runs/37572183697). They verify health, the frontend, public sample access and blocked unauthenticated extraction.
+
+## Public deployment check, October 10
+
+[recallready.onrender.com](https://recallready.onrender.com) is deployed on Render Free. The verified deployment at the start of this check was `f35ad92`.
+
+- Public HTTPS health returned 200 with hosted mode, a configured model and required judge access.
+- Extraction without a judge code returned 401; the generated judge code unlocked the browser session.
+- The initial sample showed 42 warehouse cartons, 52 dispatched cartons, 3 customers and 1 gap. Verifying INV-103 changed this to 54 / 60 / 4 / 0.
+- The reviewed HTML packet downloaded successfully and retained the resolved record, affected quantities, customer drafts and synthetic-data label.
+- A live fictional recall notice reached Nebius but returned HTTP 402. No candidate was produced or silently substituted. Hosted notice inference and receiving-document inference remain blocked pending the account's credit/billing resolution.
+- A regression check covers the clearer credit-recovery message in both extraction paths, with no retries or provider response details exposed.
+
+Render's idle startup delay was observed. No paid hosting or account top-up was purchased.
 
 ## Completed browser checks
 
@@ -49,7 +62,7 @@ The parser accepts one complete outer Markdown code fence while retaining normal
 
 - Live notice extraction was verified for one fictional scenario. Live receiving-document extraction remains unverified. External model responses are controlled fixtures in automated tests; this is not a model-quality benchmark.
 - The sample is fictional. No real distributor pilot, timing study, accuracy benchmark or customer validation has occurred.
-- Image-only PDF OCR, photo/vision intake and Tavily are not implemented. Hosting configuration is included; the deployed service must be verified separately.
+- Image-only PDF OCR, photo/vision intake and Tavily are not implemented. The hosted sample was verified; hosted live inference still needs a successful run after the credit issue is resolved.
 - This is a prototype, not a certification of food safety or production readiness.
 
 `sample-response.html` is the actual response downloaded during the synthetic drill. Its operator-review flag and hold confirmation are test actions, not real business actions. `preview.png` shows the initial local sample workspace.

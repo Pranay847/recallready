@@ -95,6 +95,7 @@ async function completeJson({ filename, text, env, fetchImpl, kind, instructions
   } catch {
     throw aiError('AI extraction service could not be reached');
   }
+  if (response.status === 402) throw aiError('Live AI is unavailable because Nebius requires account credit. The demo owner needs to check the Token Factory balance. You can still use the sample drill or enter records manually.', 503);
   if (!response.ok) throw aiError(`AI extraction service returned status ${response.status}`);
   let payload;
   try {

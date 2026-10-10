@@ -4,6 +4,10 @@ Trace recalled food lots, resolve missing evidence, and prepare a response packe
 
 An early prototype for independent food distributors, runnable locally or as a hosted demonstration. The sample drill works without an API key. Live document extraction uses NVIDIA Nemotron on Nebius Token Factory; product and lot determinations use deterministic checks after operator confirmation.
 
+**[Open the public demo](https://recallready.onrender.com)** · [Source and verification](https://github.com/Pranay847/recallready)
+
+The fictional sample drill is open to everyone. Render Free can take about a minute to wake after inactivity. Live extraction requires the separately supplied judge code and available Nebius credit. The October 10 live check reached Nebius but returned HTTP 402; successful hosted inference remains pending account credit. See [VALIDATION.md](VALIDATION.md).
+
 ## Run
 
 Install Node.js 22.13 or newer (Node 24 recommended). From this folder:
@@ -128,6 +132,6 @@ Tests cover matching and quantities, unknown/conflicting evidence, linked shipme
 
 ## Before a hackathon submission
 
-This prototype is not yet a completed hackathon submission. Follow `HACKATHON_PLAN.md` to evaluate live inference more broadly, conduct a real operator pilot, verify a judge-accessible deployment, and record the video under three minutes. The deployment configuration is included; a working public demo URL and video must still be supplied. No messages to operators or customers, or real warehouse actions, have been performed.
+This prototype is not yet a completed hackathon submission. The public sample demo and source repository are available. Follow `HACKATHON_PLAN.md` to restore and verify hosted live inference, evaluate it more broadly, conduct a real operator pilot, and record the video under three minutes. No messages to operators or customers, or real warehouse actions, have been performed.
 
 MIT licensed. The interface uses Lucide icons (ISC license) and DM Sans via Google Fonts with system-font fallbacks. Text rendering still works without the font service.
