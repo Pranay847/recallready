@@ -4,7 +4,7 @@ Validated locally on Windows with Node 24.11.1, September 6–8, October 6 and O
 
 ## Automated checks
 
-`npm test`: **54 passing, 0 failing** (October 10).
+`npm test`: **56 passing, 0 failing** (October 10), including the additional CSV checks published on October 8.
 
 Coverage includes exact product/lot decisions, missing and conflicting identifiers, initial and resolved drill totals, shipment links, malformed quantities and CSVs, source provenance, text-PDF extraction, image-only PDF rejection, local-host and origin checks, secret-free health responses, unconfigured inference, structured model-response handling, candidate invoice quantities, state restoration, stale analysis and export escaping.
 
